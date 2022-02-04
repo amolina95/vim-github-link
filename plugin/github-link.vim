@@ -26,17 +26,7 @@ function! s:execute_with_ref(ref, startline, endline)
         return
     endif
 
-    let s:repo = ''
-    if s:remote =~ '^git'
-        let s:repo = s:get_repo_url_from_git_protocol(s:remote)
-    elseif s:remote =~ '^ssh'
-        let s:repo = s:get_repo_url_from_ssh_protocol(s:remote)
-    elseif s:remote =~ '^https'
-        let s:repo = s:get_repo_url_from_https_protocol(s:remote)
-    else
-        echoerr "Remote doesn't match any known protocol"
-        return
-    endif
+    let s:repo = 'https://github.etsycorp.com/Engineering/Etsyweb'
 
     let s:root = system("git rev-parse --show-toplevel")
     let s:path_from_root = strpart(expand('%:p'), strlen(s:root))
